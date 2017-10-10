@@ -1,8 +1,9 @@
 class ConversationsController < ApplicationController
 
   def create
-    conversations = Conversation.create(conversations_params)
-    redirect_to "/conversations/#{conversations.id}"
+    @quote = Quote.find(params[:quote_id])
+    conversation = Conversation.create(quote_id: @quote.id, company_id: @quote.company.id, customer_id: @quote.customer_request.customer.id)
+    redirect_to "/conversations/#{conversation.id}"
   end
 
   def show
@@ -32,11 +33,5 @@ class ConversationsController < ApplicationController
     end
   end
 
-
-  private
-
-  def conversations_params
-    params.permit(:company_id, :customer_id)
-  end
 
 end
