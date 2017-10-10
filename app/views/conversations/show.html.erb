@@ -1,3 +1,19 @@
-<% @messages.each do |message| %>
-  <p><%= message.body %></p>
-<% end %>
+<div class="col-xs-12">
+  <div class="well">
+    <% @messages.each do |message| %>
+      <div class="row">
+        <% if current_company && message.company == current_company || current_customer && message.customer == current_customer %>
+          <div class="col-xs-6 col-xs-offset-6">
+            <p>Me</p>
+            <p><%= message.body %></p>
+          </div>
+        <% else %>
+          <div class="col-xs-6">
+            <p><%= message.company ? message.company.name : message.customer.name %></p>
+            <p><%= message.body %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
