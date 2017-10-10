@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   post '/conversations' => 'conversations#create'
   get '/conversations/:id' => 'conversations#show'
+  post '/conversations/:id/messages' => 'conversations#message'
 
   resources :admins
   resources :customer_requests

@@ -19,3 +19,15 @@
     <% end %>
   </div>
 </div>
+
+<div class="col-xs-12 text-center">
+  <%= form_tag "/conversations/#{@messages[0].conversation.id}/messages", method: :post do %> 
+      <%= text_area_tag :body, "", required:true, class: "form-control", placeholder: 'Send Message'%>
+      <% if current_customer %>
+        <%= hidden_field_tag 'customer_id', current_customer.id %>
+      <% else %>
+        <%= hidden_field_tag 'company_id', current_company.id %>
+      <% end %>
+      <button type="submit" class="btn btn-theme-bg">Submit</button>
+  <% end %>
+</div>
