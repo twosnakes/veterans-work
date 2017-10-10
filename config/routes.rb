@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   get '/how' => 'pages#how'
   get '/admin_panel' => 'pages#admin_panel'
 
+  post '/conversations' => 'conversations#create'
+  get '/conversations/:id' => 'conversations#show'
+
   resources :admins
   resources :customer_requests
   resources :companies
