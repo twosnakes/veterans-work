@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @messages = Conversation.find(params[:id]).messages.includes(:company, :customer).order('created_at').reverse
+    @messages = Conversation.find(params[:id]).messages.includes(:company, :customer).order('created_at')
   end
 
 

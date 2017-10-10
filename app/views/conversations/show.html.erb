@@ -4,12 +4,12 @@
       <div class="row">
         <% if current_company && message.company == current_company || current_customer && message.customer == current_customer %>
           <div class="col-xs-6 col-xs-offset-6 right-message speech-bubble">
-            <p>Me</p>
+            <p>Sent By: Me</p>
             <p><%= message.body %></p>
           </div>
         <% else %>
           <div class="col-xs-6 left-message speech-bubble">
-            <p><%= message.company ? message.company.name : message.customer.name %></p>
+            <p>Sent By: <%= message.company ? message.company.name : message.customer.name %></p>
             <p><%= message.body %></p>
           </div>
         <% end %>
