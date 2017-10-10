@@ -23,9 +23,11 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     if params[:customer_id]
       @message = Message.create(body: params[:body], conversation_id: @conversation.id, customer_id: params[:customer_id])
+      MessageMailer.new_message(@conversation).deliver_now
       redirect_to "/conversations/#{@conversation.id}"
     elsif params[:company_id]
       @message = Message.create(body: params[:body], conversation_id: @conversation.id, company_id: params[:company_id])
+      MessageMailer.new_message(@conversation).deliver_now
       redirect_to "/conversations/#{@conversation.id}"
     else
       flash[:notice] = "You need to be signed in to create a message."
