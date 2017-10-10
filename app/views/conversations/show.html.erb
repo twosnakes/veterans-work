@@ -10,7 +10,7 @@
           </div>
         <% else %>
           <div class="col-xs-6 left-message speech-bubble">
-            <p>Sent By: <%= message.company ? message.company.name : message.customer.name %></p>
+            <p>Sent By: <%= message.company ? message.company.name : message.customer.email %></p>
             <p><%= message.created_at.strftime("%m/%d/%Y - %H:%M") %></p>
             <p><%= message.body %></p>
           </div>
@@ -21,7 +21,7 @@
 </div>
 
 <div class="col-xs-12 text-center">
-  <%= form_tag "/conversations/#{@messages[0].conversation.id}/messages", method: :post do %> 
+  <%= form_tag "/conversations/#{@conversation.id}/messages", method: :post do %> 
       <%= text_area_tag :body, "", required:true, class: "form-control", placeholder: 'Send Message'%>
       <% if current_customer %>
         <%= hidden_field_tag 'customer_id', current_customer.id %>
