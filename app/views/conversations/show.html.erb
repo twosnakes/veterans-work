@@ -5,13 +5,13 @@
         <% if current_company && message.company == current_company || current_customer && message.customer == current_customer %>
           <div class="col-xs-6 col-xs-offset-6 right-message speech-bubble">
             <p>Sent By: Me</p>
-            <p><%= message.created_at.strftime("%m/%d/%Y - %H:%M") %></p>
+            <p><%= message.created_at.localtime.strftime("%m/%d/%Y - %H:%M %Z")%></p>
             <p><%= message.body %></p>
           </div>
         <% else %>
           <div class="col-xs-6 left-message speech-bubble">
             <p>Sent By: <%= message.company ? message.company.name : message.customer.email %></p>
-            <p><%= message.created_at.strftime("%m/%d/%Y - %H:%M") %></p>
+            <p><%= message.created_at.localtime.strftime("%m/%d/%Y - %H:%M %Z")%></p>
             <p><%= message.body %></p>
           </div>
         <% end %>
