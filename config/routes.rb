@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   post '/conversations' => 'conversations#create'
   get '/conversations/:id' => 'conversations#show'
   post '/conversations/:id/messages' => 'conversations#message'
+  get '/my_conversations' => 'conversations#index'
 
   resources :admins
   resources :customer_requests

@@ -1,5 +1,13 @@
 class ConversationsController < ApplicationController
 
+  def index
+    if current_company
+      @conversations = current_company.conversations
+    else
+      @conversations = current_customer.conversations
+    end
+  end
+
   def create
     @quote = Quote.find(params[:quote_id])
     conversation = Conversation.create(quote_id: @quote.id, company_id: @quote.company.id, customer_id: @quote.customer_request.customer.id)
