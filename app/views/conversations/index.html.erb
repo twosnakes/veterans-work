@@ -1,4 +1,4 @@
-<div class="container" style="padding-top:30px">
+<div class="container">
     <h1 class="text-center">My Conversations</h1>
   <% @conversations.each do |conversation| %>
     <div class="row">
@@ -16,11 +16,11 @@
                           <% if current_company %>
                             <div class="testimonial-writer-name"><%= conversation.customer.email %></div>
                             <div class="testimonial-writer-designation"><%= conversation.created_at.localtime.strftime("%m/%d/%Y - %H:%M %Z") %></div>
-                            <a href="/conversations/<%=conversation.id%>" class="testimonial-writer-company">Go To Conversation</a>
+                            <a href="/conversations/<%=conversation.id%>" class="testimonial-writer-company btn btn-success">Go To Conversation</a>
                           <% else %>
                             <div class="testimonial-writer-name"><%= conversation.company.email %></div>
                             <div class="testimonial-writer-designation"><%= conversation.created_at.localtime.strftime("%m/%d/%Y - %H:%M %Z") %></div>
-                            <a href="/conversations/<%=conversation.id%>" class="testimonial-writer-company">Go To Conversation</a>
+                            <a href="/conversations/<%=conversation.id%>" class="testimonial-writer-company btn btn-success">Go To Conversation</a>
                           <% end %>
                         </div>
                     </div>

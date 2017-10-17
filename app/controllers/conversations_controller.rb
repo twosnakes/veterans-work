@@ -15,9 +15,17 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    # @message = Message.new
     @messages = Conversation.find(params[:id]).messages.includes(:company, :customer).order('created_at')
     @conversation = Conversation.find(params[:id])
+
+    if current_company
+      @me = current_company
+      @them = @conversation.customer
+    else 
+      @me = current_customer
+      @them = @conversation.company
+    end
+
     if @messages.count == 0
       render 'show.html.erb'
     elsif @messages[0].conversation.company == current_company || @messages[0].conversation.customer == current_customer
