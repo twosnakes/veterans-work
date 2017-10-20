@@ -25,7 +25,7 @@
 
 //Index Page
 
-.testimonial{
+.testimonial {
     margin-bottom: 10px;
     margin-top: 20px;
 }
@@ -41,6 +41,7 @@
     border: 1px solid rgb(119,119,119);
     background-color: white;
 }
+
 .testimonial-section:after {
     top: 100%;
     left: 50px;
@@ -57,36 +58,35 @@
     text-align:left;
     padding-left: 15px;
 }
-      
 
-.testimonial-writer{
+.testimonial-writer {
     display: inline-block;
     vertical-align: top;
     padding-left: 10px;
 }
 
-.testimonial-writer-name{
+.testimonial-writer-name {
     font-weight: bold;
 }
 
-.testimonial-writer-designation{
+.testimonial-writer-designation {
     font-size: 85%;
 }
 
-.testimonial-writer-company{
+.testimonial-writer-company {
     font-size: 85%;
 }
 
-.testimonial.testimonial-success .testimonial-section{
+.testimonial.testimonial-success .testimonial-section {
     border-color: #5CB85C;
     color: #449d44;
     background-color: rgba(92, 184, 92, 0.1);
 }
 
-.testimonial.testimonial-success .testimonial-section:after{
+.testimonial.testimonial-success .testimonial-section:after {
     border-top-color: #5CB85C;
 }
 
-.testimonial.testimonial-success .testimonial-writer-name{
+.testimonial.testimonial-success .testimonial-writer-name {
     color: #5CB85C;
 }

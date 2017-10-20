@@ -10,8 +10,17 @@ class ConversationsController < ApplicationController
 
   def create
     @quote = Quote.find(params[:quote_id])
-    conversation = Conversation.create(quote_id: @quote.id, company_id: @quote.company.id, customer_id: @quote.customer_request.customer.id)
-    redirect_to "/conversations/#{conversation.id}"
+    if current_customer && @quote.customer_request.customer == current_customer
+      conversation = Conversation.new(quote_id: @quote.id, company_id: @quote.company.id, customer_id: current_customer.id)
+    elsif current_company && @quote.company == current_company
+      conversation = Conversation.new(quote_id: @quote.id, company_id: current_company.id, customer_id: @quote.customer_request.customer.id)
+    end
+
+    if conversation && conversation.save
+      redirect_to "/conversations/#{conversation.id}"
+    else
+      render :show 
+    end
   end
 
   def show
