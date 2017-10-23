@@ -52,5 +52,42 @@ RSpec.describe ConversationsController, type: :controller do
         }.to change(Conversation, :count).by 1
       end
     end
+
+    context 'company is signed in' do
+      it 'should create a conversation' do
+        customer = create :customer
+        company = create :company
+        customer_request = create :customer_request, customer_id: customer.id
+        quote = create :quote, customer_request_id: customer_request.id, company_id: company.id
+        sign_in company
+        expect{
+          post :create, params: {quote_id: quote.id}
+        }.to change(Conversation, :count).by 1
+      end
+    end
+  end
+
+  describe '#show' do
+    before :each do
+        @customer = create :customer
+        @company = create :company
+        @customer_request = create :customer_request, customer_id: @customer.id
+        @quote = create :quote, customer_request_id: @customer_request.id, company_id: @company.id
+        @conversation = create :conversation, quote_id: @quote.id, customer_id: @customer.id, company_id: @company.id
+        @message_1 = create :message, conversation_id: @conversation.id, company_id: @company.id, customer_id: @customer.id, body: "message 1"
+        @message_2 = create :message, conversation_id: @conversation.id, company_id: @company.id, customer_id: @customer.id, body: "message 2"
+    end
+    it 'should assign the conversation to @conversation' do
+        sign_in @customer
+        get :show, params: {id: @conversation.id}
+        expect(assigns(:conversation)).to eq(@conversation)
+    end
+    context 'company is signed in' do 
+      it 'should assign @me to the current_company' do
+        sign_in @company
+        get :show, params: {id: @conversation.id}
+        expect(assigns(:me)).to eq(@company)
+      end
+    end
   end
 end
