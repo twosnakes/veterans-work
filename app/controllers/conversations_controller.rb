@@ -30,7 +30,7 @@ class ConversationsController < ApplicationController
     if current_company
       @me = current_company
       @them = @conversation.customer
-    else 
+    else
       @me = current_customer
       @them = @conversation.company
     end
