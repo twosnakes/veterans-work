@@ -35,7 +35,7 @@ class ConversationsController < ApplicationController
       @them = @conversation.company
     end
 
-    if @messages.count == 0 || (@messages[0].conversation.company == current_company || @messages[0].conversation.customer == current_customer)
+    if @conversation.company == current_company || @conversation.customer == current_customer
       render 'show.html.erb'
     # elsif 
       # render 'show.html.erb'

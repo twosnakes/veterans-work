@@ -107,12 +107,13 @@ RSpec.describe ConversationsController, type: :controller do
       end
       context 'first message has been created' do
         it 'should render the show page' do
-          sign in @ 
         end
       end
       context 'company is trying to access another companys conversation' do
         it 'should redirect to root folder' do
-          sign_in @company
+          company_2 = create :company
+          sign_in company_2
+          get :show, params: {id: @conversation.id}
           expect(response).to redirect_to('/')
         end
       end
