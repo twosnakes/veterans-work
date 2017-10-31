@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: conversations
+#
+#  id          :integer          not null, primary key
+#  customer_id :integer
+#  company_id  :integer
+#  quote_id    :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe ConversationsController, type: :controller do
@@ -92,6 +104,17 @@ RSpec.describe ConversationsController, type: :controller do
         sign_in @company
         get :show, params: {id: @conversation.id}
         expect(response).to render_template('show.html.erb')
+      end
+      context 'first message has been created' do
+        it 'should render the show page' do
+          sign in @ 
+        end
+      end
+      context 'company is trying to access another companys conversation' do
+        it 'should redirect to root folder' do
+          sign_in @company
+          expect(response).to redirect_to('/')
+        end
       end
     end
   end
